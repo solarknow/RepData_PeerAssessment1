@@ -2,12 +2,12 @@
 
 
 ## Loading and preprocessing the data
-Reading in data
+1. Reading in data
 
 ```r
 data<-read.csv(unz("activity.zip","activity.csv"))
 ```
-Creating a dataset without na's
+2. Creating a dataset without na's
 
 ```r
 comp_data_bool<-complete.cases(data)
@@ -15,7 +15,7 @@ comp_data<-data[comp_data_bool,]
 ```
 
 ## What is mean total number of steps taken per day?
-Calculating totals per day...
+1. Calculating totals per day...
 
 ```r
 days<-dimnames(table(comp_data$date))[[1]]
@@ -25,11 +25,11 @@ for (d in days){
   s<-sum(tempdf$steps)
   totals<-c(totals,s)
 }
-#...and mean!
+#...and mean and median!
 tot_mean<-mean(totals)
 tot_median<-median(totals)
 ```
-### graphing total steps vs. days
+2. graphing total steps vs. days
 
 ```r
 barplot(totals)
@@ -41,7 +41,7 @@ abline(h=tot_median,col="blue")
 ![](./PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
 
 ## What is the average daily activity pattern?
-Calculating average steps per time interval
+1. Calculating average steps per time interval
 
 ```r
 intervals<-dimnames(table(comp_data$interval))[[1]]
@@ -52,7 +52,7 @@ for (i in intervals){
   avg_steps<-c(avg_steps,s)
 }
 ```
-Time-series plot of average steps taken per interval
+2. Time-series plot of average steps taken per interval
 
 ```r
 plot(intervals, avg_steps,type="l")
@@ -71,7 +71,7 @@ paste("The interval that has the largest average number of steps is",intervals[m
 ## [1] "The interval that has the largest average number of steps is 835 and is indicated by the red dot at 206.169811320755"
 ```
 ## Inputing missing values
-Finding the number of rows with NAs in them. Remember, comp_data is data-NA rows.
+1. Finding the number of rows with NAs in them. Remember, comp_data is data-NA rows.
 
 ```r
 num.na.rows<-length(row.names(data))-length(row.names(comp_data))
@@ -81,11 +81,11 @@ print(num.na.rows)
 ```
 ## [1] 2304
 ```
-Strategy for filling in missing data  
-1. If no missing values, leave be.  
-2. If missing value, mean of all available values of that time step.  
+2. Strategy for filling in missing data  
+  1. If no missing values, leave be.  
+  2. If missing value, mean of all available values of that time step.  
 
-Applying strategy to create new dataset.
+3. Applying strategy to create new dataset.
 
 ```r
 new.steps<-c()
