@@ -1,25 +1,23 @@
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
+# Reproducible Research: Peer Assessment 1
 
 
 ## Loading and preprocessing the data
 Reading in data
-```{r}
+
+```r
 data<-read.csv(unz("activity.zip","activity.csv"))
 ```
 Creating a dataset without na's
-```{r}
+
+```r
 comp_data_bool<-complete.cases(data)
 comp_data<-data[comp_data_bool,]
-``` 
+```
 
 ## What is mean total number of steps taken per day?
 Calculating totals per day...
-```{r}
+
+```r
 days<-dimnames(table(comp_data$date))[[1]]
 totals<-c()
 for (d in days){
@@ -31,11 +29,14 @@ for (d in days){
 tot_mean=mean(totals)
 ```
 ### graphing total steps vs. days
-```{r}
+
+```r
 barplot(totals)
 #adding a line that represents the mean per day steps
 abline(h=tot_mean,col="red")
 ```
+
+![](./PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
 
 ## What is the average daily activity pattern?
 
