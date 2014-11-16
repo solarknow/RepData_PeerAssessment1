@@ -1,6 +1,3 @@
-# Reproducible Research: Peer Assessment 1
-
-
 ## Loading and preprocessing the data
 1. Reading in data
 
@@ -28,6 +25,19 @@ for (d in days){
 #...and mean and median!
 tot_mean<-mean(totals)
 tot_median<-median(totals)
+print(tot_mean)
+```
+
+```
+## [1] 9354.23
+```
+
+```r
+print(tot_median)
+```
+
+```
+## [1] 10395
 ```
 2. graphing total steps vs. days
 
